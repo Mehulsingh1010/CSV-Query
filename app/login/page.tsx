@@ -35,7 +35,7 @@ export default function LoginPage() {
     } catch (error) {
       toast({
         title: 'Login failed',
-        description: 'Please check your credentials and try again.',
+        description: 'Please confirm your verification via Gmail and try again.',
         variant: 'destructive',
       })
     } finally {
