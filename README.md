@@ -6,10 +6,6 @@ The **CSV Query App** is a web application that allows users to upload CSV files
 ## Live Demo
 Experience the app live: [CSV Query App](https://csv-query.netlify.app/login)
 
-## Preview
-![Login Page](./screenshots/login.png)
-![Signup Page](./screenshots/signup.png)
-![Main Interface](./screenshots/main-interface.png)
 
 ## Project Features
 - **CSV Upload & Query** – Upload CSV files and interact with the data by asking questions in plain language.
