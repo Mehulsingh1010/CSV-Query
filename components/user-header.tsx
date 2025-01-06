@@ -30,7 +30,7 @@ export function UserHeader() {
       <div className="container mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         <h1 className="text-2xl font-bold">CSV Query Interface</h1>
         <div className="flex items-center gap-4">
-          <span className="text-sm font-medium">{user.email}</span>
+          <span className="text-sm font-medium">{user.username}</span>
           <Button onClick={handleLogout} variant="outline" size="sm">
             Logout
           </Button>
