@@ -40,20 +40,25 @@ export function ResultsTable({ data }: ResultsTableProps) {
   }
 
   return (
-    <div className="space-y-4 rounded-lg border bg-card p-6">
+    <div className="space-y-4 rounded-lg border bg-white/70 backdrop-blur-sm p-6">
       <div className="flex justify-between items-center">
-        <h3 className="text-lg font-semibold">Query Results</h3>
-        <Button variant="outline" size="sm" onClick={handleExport}>
+        <h3 className="text-lg font-semibold text-gray-900">Query Results</h3>
+        <Button 
+          variant="outline" 
+          size="sm" 
+          onClick={handleExport}
+          className="text-purple-600 hover:text-purple-700 border-purple-600 hover:border-purple-700"
+        >
           <Download className="mr-2 h-4 w-4" />
           Export CSV
         </Button>
       </div>
-      <div className="rounded-md border border-border overflow-x-auto">
+      <div className="rounded-md border border-gray-200 overflow-x-auto">
         <Table>
           <TableHeader>
-            <TableRow className="border-border hover:bg-muted/50">
+            <TableRow className="border-gray-200 hover:bg-gray-50">
               {headers.map((header, index) => (
-                <TableHead key={index} className="text-muted-foreground">
+                <TableHead key={index} className="text-gray-600">
                   {header}
                 </TableHead>
               ))}
@@ -61,9 +66,9 @@ export function ResultsTable({ data }: ResultsTableProps) {
           </TableHeader>
           <TableBody>
             {rows.map((row, rowIndex) => (
-              <TableRow key={rowIndex} className="border-border hover:bg-muted/50">
+              <TableRow key={rowIndex} className="border-gray-200 hover:bg-gray-50">
                 {row.map((cell, cellIndex) => (
-                  <TableCell key={cellIndex} className="font-mono">
+                  <TableCell key={cellIndex} className="font-mono text-gray-900">
                     {cell}
                   </TableCell>
                 ))}

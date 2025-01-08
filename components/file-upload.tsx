@@ -59,9 +59,6 @@ export function FileUpload({ onFileUploaded, onFileSelected }: FileUploadProps) 
       const { error: uploadError, data } = await supabase.storage
         .from('csv-files')
         .upload(fileName, file, {
-          onUploadProgress: (progress) => {
-            setUploadProgress((progress.loaded / progress.total) * 100)
-          },
         })
 
       if (uploadError) throw uploadError
@@ -149,7 +146,7 @@ export function FileUpload({ onFileUploaded, onFileSelected }: FileUploadProps) 
         <Button
           variant="outline"
           disabled={isUploading}
-          className="relative"
+          className="relative bg-white text-purple-600 border-purple-600 "
           onClick={() => document.getElementById('file-upload')?.click()}
         >
           <Upload className="mr-2 h-4 w-4" />
@@ -168,17 +165,17 @@ export function FileUpload({ onFileUploaded, onFileSelected }: FileUploadProps) 
         )}
       </div>
       {files.length > 0 && (
-        <div className="bg-muted p-4 rounded-md">
-          <h3 className="text-lg font-semibold mb-2">Uploaded Files:</h3>
+        <div className="bg-white/70 backdrop-blur-sm p-4 rounded-md">
+          <h3 className="text-lg font-semibold mb-2 text-gray-900">Uploaded Files:</h3>
           <ul className="space-y-2">
             {files.map((file) => (
               <li key={file.id} className="flex items-center justify-between">
                 <button
                   onClick={() => handleFileSelect(file.id)}
-                  className="text-left hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                  className="text-left hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 text-gray-900"
                 >
                   {file.original_name}
-                  <span className="text-sm text-muted-foreground ml-2">
+                  <span className="text-sm text-gray-600 ml-2">
                     ({new Date(file.created_at).toLocaleString()})
                   </span>
                 </button>
@@ -186,6 +183,7 @@ export function FileUpload({ onFileUploaded, onFileSelected }: FileUploadProps) 
                   variant="ghost"
                   size="sm"
                   onClick={() => handleFileDelete(file.id)}
+                  className="text-gray-600 hover:text-gray-900"
                 >
                   <X className="h-4 w-4" />
                 </Button>
@@ -198,3 +196,21 @@ export function FileUpload({ onFileUploaded, onFileSelected }: FileUploadProps) 
   )
 }
 
+interface File {
+  id: string
+  filename: string
+  original_name: string
+  size_bytes: number
+  mime_type: string
+  status: string
+  column_names: string[]
+  sample_data: any[]
+  row_count: number
+  created_at: string
+}
+
+interface SupabaseClient {
+  from: (table: string) => {
+        select: (columns: string) => Promise<{ data: File[] | null, error: Error | null }>
+      }
+    }

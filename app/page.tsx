@@ -68,17 +68,43 @@ export default function HomePage() {
   }
 
   return (
-    <div className="container mx-auto py-10 px-4 sm:px-6 lg:px-8">
-      <div className="space-y-6">
-        <FileUpload onFileUploaded={handleFileUploaded} onFileSelected={handleFileSelected} />
-        {selectedFile && (
-          <>
-            <QueryEditor fileId={selectedFile.id} onQueryResult={handleQueryResult} />
-            {queryResult && <ResultsTable data={queryResult} />}
-          </>
-        )}
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-100/50 py-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-8 text-center">
+          <div className="inline-block">
+            <svg
+              viewBox="0 0 100 20"
+              className="w-32 h-8 mx-auto mb-4"
+            >
+              <defs>
+                <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#7C3AED" />
+                  <stop offset="50%" stopColor="#EC4899" />
+                  <stop offset="100%" stopColor="#EAB308" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M10 10 Q 25 0, 40 10 T 70 10 T 100 10"
+                fill="none"
+                stroke="url(#logo-gradient)"
+                strokeWidth="4"
+              />
+            </svg>
+          </div>
+          <h1 className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500">
+            CSV Query Interface
+          </h1>
+        </div>
+        <div className="space-y-6">
+          <FileUpload onFileUploaded={handleFileUploaded} onFileSelected={handleFileSelected} />
+          {selectedFile && (
+            <>
+              <QueryEditor fileId={selectedFile.id} onQueryResult={handleQueryResult} />
+              {queryResult && <ResultsTable data={queryResult} />}
+            </>
+          )}
+        </div>
       </div>
     </div>
   )
 }
-

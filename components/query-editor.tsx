@@ -62,11 +62,12 @@ export function QueryEditor({ fileId, onQueryResult }: QueryEditorProps) {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Enter your query in natural language..."
-        className="min-h-[100px] font-mono"
+        className="min-h-[100px] font-mono bg-white/50 text-black border-gray-300 focus:border-purple-500 focus:ring-purple-500"
       />
       <Button 
         onClick={handleSubmit} 
         disabled={isLoading || !query.trim()}
+        className="bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 hover:opacity-90 transition-opacity text-white"
       >
         <Play className="mr-2 h-4 w-4" />
         Run Query
